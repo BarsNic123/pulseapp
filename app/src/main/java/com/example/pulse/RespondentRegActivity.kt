@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -20,7 +20,7 @@ class RespondentRegActivity : AppCompatActivity() {
         setContentView(R.layout.activity_respondent_reg)
 
         // 1. Handle Window Insets for the Mosaic Background
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.respondentReg)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.respondent_reg)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -32,11 +32,12 @@ class RespondentRegActivity : AppCompatActivity() {
         val password = intent.getStringExtra("EXTRA_PASSWORD")
 
         // 3. Initialize UI Components
-        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
         val spinner = findViewById<Spinner>(R.id.spnExpertise)
         val etLicense = findViewById<EditText>(R.id.etLicense)
         val etOrg = findViewById<EditText>(R.id.etOrganization)
-        val btnComplete = findViewById<Button>(R.id.btnCompleteReg)
+
+        val btnComplete = findViewById<Button>(R.id.btnVerifyComplete)
 
         // 4. Setup the Expertise Spinner
         val roles = arrayOf("Doctor", "Nurse", "MedTech", "Medical Student", "First Aider")
@@ -64,7 +65,7 @@ class RespondentRegActivity : AppCompatActivity() {
                 Toast.makeText(this, "Welcome, $selectedRole $fullName!", Toast.LENGTH_LONG).show()
 
                 // Navigate to Respondent Dashboard or Login
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish() // Close registration screens
             }

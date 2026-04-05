@@ -2,122 +2,131 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/respondentReg"
+    android:id="@+id/respondent_reg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    tools:context=".RespondentRegActivity">
+    android:background="#FFFFFF">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Go Back"
-        android:padding="4dp"
-        android:scaleType="fitCenter"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtHeader"
+        android:id="@+id/txtProfileTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:text="Professional Profile"
         android:textColor="#333333"
-        android:textSize="28sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnBack" />
 
     <TextView
-        android:id="@+id/txtSub"
+        android:id="@+id/txtProfileSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="Please provide your medical credentials."
-        android:textColor="#616161"
-        android:textSize="16sp"
+        android:textColor="#757575"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtHeader" />
+        app:layout_constraintTop_toBottomOf="@id/txtProfileTitle" />
 
     <TextView
-        android:id="@+id/lblExpertise"
+        android:id="@+id/txtExpertise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Primary Expertise"
         android:textColor="#333333"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtSub" />
+        app:layout_constraintTop_toBottomOf="@id/txtProfileSubtitle" />
 
-    <FrameLayout
-        android:id="@+id/spinnerContainer"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spnExpertise"
+        android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/lblExpertise">
-
-        <Spinner
-            android:id="@+id/spnExpertise"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:spinnerMode="dropdown" />
-    </FrameLayout>
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtExpertise" />
 
     <EditText
         android:id="@+id/etLicense"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_edittext"
-        android:hint="Valid ID's"
-        android:inputType="textCapCharacters"
+        android:hint="License or Student ID Number"
+        android:inputType="text"
         android:padding="16dp"
         android:textColorHint="#757575"
-        app:layout_constraintTop_toBottomOf="@id/spinnerContainer" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spnExpertise" />
 
     <EditText
         android:id="@+id/etOrganization"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_edittext"
         android:hint="Affiliated Hospital / University"
-        android:inputType="textPostalAddress"
+        android:inputType="text"
         android:padding="16dp"
         android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etLicense" />
 
     <TextView
         android:id="@+id/txtDisclaimer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="By continuing, you verify that the information above is accurate for emergency coordination."
         android:textColor="#9E9E9E"
         android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etOrganization" />
 
     <Button
-        android:id="@+id/btnCompleteReg"
-        android:layout_width="match_parent"
+        android:id="@+id/btnVerifyComplete"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:backgroundTint="#0056b3"
         android:text="Verify &amp; Complete"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtDisclaimer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
