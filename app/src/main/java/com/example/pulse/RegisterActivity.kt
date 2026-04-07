@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView // Make sure this is imported!
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -19,14 +20,12 @@ class RegisterActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_register)
 
-        // Window insets to keep the content above the navigation bar
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.register)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(0, 0, 0, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Initialize Input Fields
         val etFullName = findViewById<EditText>(R.id.etFullName)
         val etEmailRegister = findViewById<EditText>(R.id.etEmailRegister)
         val etPasswordRegister = findViewById<EditText>(R.id.etPasswordRegister)
@@ -39,8 +38,7 @@ class RegisterActivity : AppCompatActivity() {
         val btnBack = findViewById<ImageView>(R.id.btnBack)
 
         btnBack.setOnClickListener {
-            // Replaced deprecated onBackPressed with the modern approach or finish()
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
 
         btnRegisterSubmit.setOnClickListener {

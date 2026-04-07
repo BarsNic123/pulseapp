@@ -14,10 +14,13 @@ class ConnectionClass {
         var conn: Connection? = null
         try {
             Class.forName(classes)
-            // Fixed URL format for JTDS
-            val conUrl = "jdbc:jtds:sqlserver://$ip:$port/$db"
+
+            // Use this exact format to avoid syntax errors
+            val conUrl = "jdbc:jtds:sqlserver://$ip:$port/$db;ssl=request;encrypt=false;trustServerCertificate=true;"
+
             conn = DriverManager.getConnection(conUrl, un, password)
         } catch (e: Exception) {
+            android.util.Log.e("DB_ERROR", "Message: ${e.message}")
             e.printStackTrace()
         }
         return conn
