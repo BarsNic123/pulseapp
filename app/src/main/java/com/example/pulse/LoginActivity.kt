@@ -38,10 +38,22 @@ class LoginActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please enter your credentials", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Logging in $email...", Toast.LENGTH_SHORT).show()
-                // FUTURE LOGIC:
-                // if(role == "Patient") { startActivity(Intent(this, PatientDashboardActivity::class.java)) }
-                // else { startActivity(Intent(this, ResponderDashboardActivity::class.java)) }
+                Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show()
+
+                // Retrieve the saved role
+                val sharedPreferences = getSharedPreferences("PulsePrefs", MODE_PRIVATE)
+                val savedEmail = sharedPreferences.getString("USER_EMAIL", "")
+                val savedRole = sharedPreferences.getString("USER_ROLE", "Patient") // Default fallback
+
+                // Check role and navigate to appropriate dashboard
+                val finalRole = if (email == savedEmail) savedRole else if (email.contains("responder", ignoreCase = true)) "Respondent" else "Patient"
+
+                if (finalRole == "Patient") {
+                    startActivity(Intent(this, PatientDashboardActivity::class.java))
+                } else {
+                    startActivity(Intent(this, ResponderDashboardActivity::class.java))
+                }
+                finish()
             }
         }
 

@@ -69,8 +69,17 @@ class RespondentRegActivity : AppCompatActivity() {
                             statement.executeUpdate(sql)
 
                             runOnUiThread {
-                                Toast.makeText(this, "Registration Successful, $fullName!", Toast.LENGTH_LONG).show()
-                                val intent = Intent(this, MainActivity::class.java)
+                                // Save role for the Prototype Login
+                                val sharedPreferences = getSharedPreferences("PulsePrefs", MODE_PRIVATE)
+                                val editor = sharedPreferences.edit()
+                                editor.putString("USER_ROLE", "Respondent")
+                                editor.putString("USER_EMAIL", email)
+                                editor.apply()
+
+                                Toast.makeText(this@RespondentRegActivity, "Registration Successful, $fullName!", Toast.LENGTH_LONG).show()
+
+                                // Navigate directly to Responder Dashboard
+                                val intent = Intent(this@RespondentRegActivity, ResponderDashboardActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
                             }

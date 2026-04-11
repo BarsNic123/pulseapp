@@ -56,14 +56,16 @@ class RegisterActivity : AppCompatActivity() {
 
             when (radioButton.text.toString()) {
                 "Patient" -> {
-                    // Logic for Patient (Save to DB here)
-                    Toast.makeText(this, "Account Created! Welcome Patient.", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    // Navigate to Patient Registration Step 2
+                    val intent = Intent(this, PatientRegActivity::class.java).apply {
+                        putExtra("EXTRA_NAME", fullName)
+                        putExtra("EXTRA_EMAIL", email)
+                        putExtra("EXTRA_PASSWORD", password)
+                    }
                     startActivity(intent)
                 }
                 "Respondent" -> {
-                    // Logic for Respondent: Pass data to next screen for Step 2
+                    // Navigate to Respondent Registration Step 2
                     val intent = Intent(this, RespondentRegActivity::class.java).apply {
                         putExtra("EXTRA_NAME", fullName)
                         putExtra("EXTRA_EMAIL", email)

@@ -64,7 +64,14 @@ class PatientRegActivity : AppCompatActivity() {
             // SUCCESS LOGIC: Send the data to your backend
             Toast.makeText(this, "Welcome, $fullName! Profile created as Patient ($riskLevel).", Toast.LENGTH_LONG).show()
 
-            // Navigate to Main/Login
+            // Save role for the Prototype Login
+            val sharedPreferences = getSharedPreferences("PulsePrefs", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("USER_ROLE", "Patient")
+            editor.putString("USER_EMAIL", email)
+            editor.apply()
+
+            // Navigate to Login
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
