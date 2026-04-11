@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -29,12 +28,8 @@ class RegisterActivity : AppCompatActivity() {
         val etFullName = findViewById<EditText>(R.id.etFullName)
         val etEmailRegister = findViewById<EditText>(R.id.etEmailRegister)
         val etPasswordRegister = findViewById<EditText>(R.id.etPasswordRegister)
-
-        // Initialize Buttons and Groups
         val rgRoleSelection = findViewById<RadioGroup>(R.id.rgRoleSelection)
         val btnRegisterSubmit = findViewById<Button>(R.id.btnRegisterSubmit)
-
-        // THE FIX: This is now an ImageView to match the XML
         val btnBack = findViewById<ImageView>(R.id.btnBack)
 
         btnBack.setOnClickListener {
@@ -42,7 +37,6 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         btnRegisterSubmit.setOnClickListener {
-            // Check which role is selected
             val selectedId = rgRoleSelection.checkedRadioButtonId
 
             if (selectedId == -1) {
@@ -51,13 +45,10 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             val radioButton = findViewById<RadioButton>(selectedId)
-
-            // Extract the user data
             val fullName = etFullName.text.toString().trim()
             val email = etEmailRegister.text.toString().trim()
             val password = etPasswordRegister.text.toString().trim()
 
-            // Basic Validation
             if (fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -65,15 +56,14 @@ class RegisterActivity : AppCompatActivity() {
 
             when (radioButton.text.toString()) {
                 "Patient" -> {
-                    // Logic for Patient
+                    // Logic for Patient (Save to DB here)
                     Toast.makeText(this, "Account Created! Welcome Patient.", Toast.LENGTH_SHORT).show()
-
                     val intent = Intent(this, LoginActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 }
                 "Respondent" -> {
-                    // Logic for Respondent: Pass data to next screen
+                    // Logic for Respondent: Pass data to next screen for Step 2
                     val intent = Intent(this, RespondentRegActivity::class.java).apply {
                         putExtra("EXTRA_NAME", fullName)
                         putExtra("EXTRA_EMAIL", email)

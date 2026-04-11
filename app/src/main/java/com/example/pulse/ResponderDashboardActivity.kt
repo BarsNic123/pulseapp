@@ -14,7 +14,6 @@ class ResponderDashboardActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_responder_dashboard)
 
-        // Edge-to-edge padding fix
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(0, 0, 0, systemBars.bottom)
@@ -24,15 +23,13 @@ class ResponderDashboardActivity : AppCompatActivity() {
         val cvConfirmHelp = findViewById<CardView>(R.id.cvConfirmHelp)
 
         cvConfirmHelp.setOnClickListener {
-
+            // Passes info to the Case Tracker Screen
             val intent = Intent(this, CaseTrackerActivity::class.java).apply {
                 putExtra("EXTRA_PATIENT_NAME", "Lola Rosa")
                 putExtra("EXTRA_RISK_LEVEL", "High Risk")
                 putExtra("EXTRA_LOCATION", "Dr. Santos Clinic")
                 putExtra("EXTRA_NOTES", "Needs assistance getting to Dr. Santos Clinic.")
             }
-
-
             startActivity(intent)
         }
     }

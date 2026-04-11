@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/patientReg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Patient Profile"
+        android:textColor="#333333"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
+    <TextView
+        android:id="@+id/txtSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Please provide your medical information."
+        android:textColor="#757575"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtHeader" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/txtDisclaimer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtSub">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etAge"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Age"
+                    android:inputType="number"
+                    android:padding="16dp"
+                    android:textColor="#333333"
+                    android:textColorHint="#757575" />
+
+                <EditText
+                    android:id="@+id/etBloodType"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Blood Type"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColor="#333333"
+                    android:textColorHint="#757575" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etEmergencyContact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_edittext"
+                android:hint="Emergency Contact Number"
+                android:inputType="phone"
+                android:padding="16dp"
+                android:textColor="#333333"
+                android:textColorHint="#757575" />
+
+            <EditText
+                android:id="@+id/etMedicalNotes"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_edittext"
+                android:gravity="top|start"
+                android:hint="Pre-existing Conditions / Allergies"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:padding="16dp"
+                android:textColor="#333333"
+                android:textColorHint="#757575" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:text="Current Medical Status"
+                android:textColor="#333333"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/rgRiskLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbLowRisk"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="#0056b3"
+                    android:text="Low Risk" />
+
+                <RadioButton
+                    android:id="@+id/rbHighRisk"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="#D32F2F"
+                    android:textColor="#D32F2F"
+                    android:text="High Risk" />
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/txtDisclaimer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="By continuing, you verify that the information above is accurate for emergency coordination."
+        android:textColor="#9E9E9E"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/btnCompleteReg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCompleteReg"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#0056b3"
+        android:text="Verify &amp; Complete"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

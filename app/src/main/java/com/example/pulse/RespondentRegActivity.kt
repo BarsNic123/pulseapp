@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
@@ -62,12 +61,10 @@ class RespondentRegActivity : AppCompatActivity() {
 
                     if (conn != null) {
                         try {
-                            // SQL INSERT Query including all fields
                             val sql = """
                                 INSERT INTO Users (email, password, fullName, role, license, organization) 
                                 VALUES ('$email', '$password', '$fullName', '$selectedRole', '$license', '$organization')
                             """.trimIndent()
-
                             val statement = conn.createStatement()
                             statement.executeUpdate(sql)
 
@@ -78,7 +75,6 @@ class RespondentRegActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
                         } catch (e: Exception) {
-                            e.printStackTrace()
                             runOnUiThread {
                                 Toast.makeText(this, "DB Error: ${e.message}", Toast.LENGTH_LONG).show()
                             }
