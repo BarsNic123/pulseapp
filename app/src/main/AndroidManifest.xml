@@ -15,7 +15,9 @@
         android:theme="@style/Theme.Pulse"
         tools:targetApi="31">
 
-        <activity android:name=".MainActivity" android:exported="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,13 +27,13 @@
         <activity android:name=".LoginActivity" android:exported="false" />
         <activity android:name=".RegisterActivity" android:exported="false" />
         <activity android:name=".RespondentRegActivity" android:exported="false" />
-        <activity android:name=".PatientRegActivity" android:exported="false" /> <activity android:name=".PatientDashboardActivity" android:exported="false" />
+        <activity android:name=".PatientRegActivity" android:exported="false" />
+        <activity android:name=".PatientDashboardActivity" android:exported="false" />
         <activity android:name=".ResponderDashboardActivity" android:exported="false" />
-
-        <activity
-            android:name=".AdminDashboardActivity"
-            android:exported="false" />
+        <activity android:name=".AdminDashboardActivity" android:exported="false" />
+        <activity android:name=".ResponderEditActivity" android:exported="false" />
+        <activity android:name=".ResponderListActivity" android:exported="false" android:label="Responder Directory" />
+        <activity android:name=".CaseTrackerActivity" android:exported="false" android:label="Case Tracker" />
 
     </application>
-
 </manifest>

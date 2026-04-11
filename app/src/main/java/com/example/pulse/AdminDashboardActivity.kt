@@ -1,5 +1,6 @@
 package com.example.pulse
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -12,17 +13,13 @@ class AdminDashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.admin)
 
-        // 1. Find the Floating Action Button
-        // Note: Make sure the ID in your XML is "fabAddCase"
         val fab = findViewById<FloatingActionButton>(R.id.fabAddCase)
-
-        // 2. Find the 4 custom LinearLayout buttons from your admin.xml
         val navDashboard = findViewById<LinearLayout>(R.id.navDashboard)
         val navCases = findViewById<LinearLayout>(R.id.navCases)
         val navTasks = findViewById<LinearLayout>(R.id.navTasks)
+        val navResponders = findViewById<LinearLayout>(R.id.navResponders)
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
 
-        // 3. Set up the Click Listeners
         fab?.setOnClickListener {
             Toast.makeText(this, "Create New Case Clicked", Toast.LENGTH_SHORT).show()
         }
@@ -37,6 +34,11 @@ class AdminDashboardActivity : AppCompatActivity() {
 
         navTasks?.setOnClickListener {
             Toast.makeText(this, "Tasks Selected", Toast.LENGTH_SHORT).show()
+        }
+
+        navResponders?.setOnClickListener {
+            val intent = Intent(this, ResponderListActivity::class.java)
+            startActivity(intent)
         }
 
         navProfile?.setOnClickListener {

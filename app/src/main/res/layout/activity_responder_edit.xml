@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <View
+        android:id="@+id/idCardHeader"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="@drawable/bg_responder"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="BACK"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtIdCardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="RESPONDER ID"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/guideLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="200dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPanel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideLine">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View android:layout_width="match_parent" android:layout_height="40dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp">
+
+                    <TextView
+                        android:id="@+id/lblStatus"
+                        style="@style/FieldLabel"
+                        android:text="NETWORK AVAILABILITY" />
+
+                    <TextView
+                        android:id="@+id/tvStatusDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lblStatus"
+                        android:text="ONLINE - READY"
+                        android:textColor="#1A73E8"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchActiveStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:checked="true" />
+                </RelativeLayout>
+
+                <TextView style="@style/FieldLabel" android:text="FULL NAME" />
+                <EditText android:id="@+id/etName" style="@style/PulseInput" android:hint="Christian Johnson (example)" android:inputType="textPersonName" />
+
+                <TextView style="@style/FieldLabel" android:text="AGE" />
+                <EditText android:id="@+id/etAge" style="@style/PulseInput" android:hint="Years" android:inputType="number" />
+
+                <TextView style="@style/FieldLabel" android:text="EXPERTISE TAGS" />
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgExpertise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/PulseChip"
+                        android:text="PARAMEDIC"
+                        android:checkable="true" />
+                    <com.google.android.material.chip.Chip
+                        style="@style/PulseChip"
+                        android:text="First Aid"
+                        android:checkable="true" />
+                    <com.google.android.material.chip.Chip
+                        style="@style/PulseChip"
+                        android:text="Elderly Companion"
+                        android:checkable="true" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView style="@style/FieldLabel" android:text="BIO" />
+                <EditText android:id="@+id/etBio" style="@style/PulseInput" android:hint="A brief summary of your role or certifications..." android:gravity="top" android:minLines="3" android:inputType="textMultiLine" />
+
+                <View android:layout_width="match_parent" android:layout_height="40dp" />
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="24dp"
+                    android:backgroundTint="#E81A1A"
+                    android:text="SAVE CHANGES"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:cornerRadius="50dp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideLine">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatarr" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

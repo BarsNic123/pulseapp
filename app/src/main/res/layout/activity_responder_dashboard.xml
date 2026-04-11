@@ -248,11 +248,13 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="8dp">
+
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@android:drawable/ic_menu_sort_by_size"
-                        app:tint="#003366"/>
+                        app:tint="#003366" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -280,11 +282,13 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="8dp">
+
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@android:drawable/ic_menu_share"
-                        app:tint="#003366"/>
+                        app:tint="#003366" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -297,6 +301,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvProfileCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -311,11 +316,13 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="8dp">
+
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@android:drawable/ic_menu_myplaces"
-                        app:tint="#003366"/>
+                        app:tint="#003366" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -344,7 +351,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -378,6 +384,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

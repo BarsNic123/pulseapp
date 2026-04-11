@@ -2,6 +2,7 @@ package com.example.pulse
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -21,9 +22,10 @@ class ResponderDashboardActivity : AppCompatActivity() {
         }
 
         val cvConfirmHelp = findViewById<CardView>(R.id.cvConfirmHelp)
+        val cvProfileCard = findViewById<CardView>(R.id.cvProfileCard)
+        val navProfile = findViewById<LinearLayout>(R.id.navProfile)
 
         cvConfirmHelp.setOnClickListener {
-            // Passes info to the Case Tracker Screen
             val intent = Intent(this, CaseTrackerActivity::class.java).apply {
                 putExtra("EXTRA_PATIENT_NAME", "Lola Rosa")
                 putExtra("EXTRA_RISK_LEVEL", "High Risk")
@@ -32,5 +34,13 @@ class ResponderDashboardActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
+        val openEditProfile = {
+            val intent = Intent(this, ResponderEditActivity::class.java)
+            startActivity(intent)
+        }
+
+        cvProfileCard?.setOnClickListener { openEditProfile() }
+        navProfile?.setOnClickListener { openEditProfile() }
     }
 }
