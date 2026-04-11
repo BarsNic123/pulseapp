@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/bg_active_badge"
+
                 android:paddingHorizontal="8dp"
                 android:text="Active"
                 android:textColor="#1E8E3E"
@@ -46,8 +46,7 @@
 
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_folder_blue" />
+                android:layout_height="40dp" />
 
             <LinearLayout
                 android:layout_width="0dp"
