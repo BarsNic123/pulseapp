@@ -8,8 +8,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
+enum class HelpRequestRowStyle {
+    /** Patient help list: show responder as title. */
+    PATIENT,
+
+    /** Responder queue: show patient as title. */
+    RESPONDER,
+
+    /** Admin overview: patient + responder context. */
+    ADMIN
+}
+
 class HelpRequestAdapter(
-    private val showPatient: Boolean,
+    private val rowStyle: HelpRequestRowStyle,
     private val onClick: (HelpRequest) -> Unit
 ) : ListAdapter<HelpRequest, HelpRequestAdapter.VH>(DIFF) {
 
@@ -19,7 +30,7 @@ class HelpRequestAdapter(
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.bind(getItem(position), showPatient, onClick)
+        holder.bind(getItem(position), rowStyle, onClick)
     }
 
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,13 +38,25 @@ class HelpRequestAdapter(
         private val tvSubtitle: TextView = itemView.findViewById(R.id.tvHelpSubtitle)
         private val tvStatus: TextView = itemView.findViewById(R.id.tvHelpStatus)
 
-        fun bind(item: HelpRequest, showPatient: Boolean, onClick: (HelpRequest) -> Unit) {
-            if (showPatient) {
-                tvTitle.text = itemView.context.getString(R.string.help_row_responder_format, item.responderName.ifBlank { "—" })
-                tvSubtitle.text = item.locationSummary.ifBlank { itemView.context.getString(R.string.help_row_no_location) }
-            } else {
-                tvTitle.text = item.patientName.ifBlank { itemView.context.getString(R.string.dashboard_name_fallback) }
-                tvSubtitle.text = item.locationSummary.ifBlank { itemView.context.getString(R.string.help_row_no_location) }
+        fun bind(item: HelpRequest, rowStyle: HelpRequestRowStyle, onClick: (HelpRequest) -> Unit) {
+            val ctx = itemView.context
+            when (rowStyle) {
+                HelpRequestRowStyle.PATIENT -> {
+                    tvTitle.text = ctx.getString(R.string.help_row_responder_format, item.responderName.ifBlank { "—" })
+                    tvSubtitle.text = item.locationSummary.ifBlank { ctx.getString(R.string.help_row_no_location) }
+                }
+                HelpRequestRowStyle.RESPONDER -> {
+                    tvTitle.text = item.patientName.ifBlank { ctx.getString(R.string.dashboard_name_fallback) }
+                    tvSubtitle.text = item.locationSummary.ifBlank { ctx.getString(R.string.help_row_no_location) }
+                }
+                HelpRequestRowStyle.ADMIN -> {
+                    tvTitle.text = item.patientName.ifBlank { ctx.getString(R.string.dashboard_name_fallback) }
+                    tvSubtitle.text = ctx.getString(
+                        R.string.admin_help_row_subtitle,
+                        item.responderName.ifBlank { "—" },
+                        item.locationSummary.ifBlank { ctx.getString(R.string.help_row_no_location) }
+                    )
+                }
             }
             tvStatus.text = item.statusLabel()
             itemView.setOnClickListener { onClick(item) }

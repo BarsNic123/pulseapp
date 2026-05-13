@@ -50,7 +50,7 @@ class ResponderHelpQueueActivity : AppCompatActivity() {
         val rv = findViewById<RecyclerView>(R.id.rvQueue)
         val progress = findViewById<ProgressBar>(R.id.progressQueue)
 
-        adapter = HelpRequestAdapter(showPatient = false) { item ->
+        adapter = HelpRequestAdapter(HelpRequestRowStyle.RESPONDER) { item ->
             startActivity(
                 Intent(this, CaseTrackerActivity::class.java)
                     .putExtra(CaseTrackerActivity.EXTRA_HELP_REQUEST_ID, item.id)

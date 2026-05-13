@@ -47,21 +47,10 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (email == "admin@pulse.com" && password == "admin123") {
-                Toast.makeText(this, "Admin login successful", Toast.LENGTH_SHORT).show()
-                startActivity(
-                    Intent(this, AdminDashboardActivity::class.java).addFlags(
-                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    )
-                )
-                finish()
-                return@setOnClickListener
-            }
-
             auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { result ->
                     val uid = result.user?.uid ?: return@addOnSuccessListener
-                    loadUserRole(uid)
+                    loadUserRole(uid, result.user?.email)
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -73,14 +62,18 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadUserRole(uid: String) {
+    private fun loadUserRole(uid: String, email: String?) {
         fun applyRole(role: String?) {
-            when (role) {
-                "Respondent", "Responder" -> {
+            when {
+                role == PulseRoles.ROLE_ADMIN || PulseRoles.isAdminEmail(email) -> {
+                    Toast.makeText(this, R.string.login_welcome_admin, Toast.LENGTH_SHORT).show()
+                    goRootDashboard(AdminDashboardActivity::class.java)
+                }
+                role == PulseRoles.ROLE_RESPONDENT || role == PulseRoles.ROLE_RESPONDER -> {
                     Toast.makeText(this, "Welcome, responder", Toast.LENGTH_SHORT).show()
                     goRootDashboard(ResponderDashboardActivity::class.java)
                 }
-                "Patient" -> {
+                role == PulseRoles.ROLE_PATIENT -> {
                     Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
                     goRootDashboard(PatientDashboardActivity::class.java)
                 }
@@ -99,6 +92,11 @@ class LoginActivity : AppCompatActivity() {
             db.collection("users").document(uid).get(source)
                 .addOnSuccessListener { doc ->
                     if (!doc.exists()) {
+                        if (PulseRoles.isAdminEmail(email)) {
+                            Toast.makeText(this, R.string.login_welcome_admin, Toast.LENGTH_SHORT).show()
+                            goRootDashboard(AdminDashboardActivity::class.java)
+                            return@addOnSuccessListener
+                        }
                         auth.signOut()
                         Toast.makeText(
                             this,
@@ -107,7 +105,10 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                         return@addOnSuccessListener
                     }
-                    applyRole(doc.getString("role"))
+                    val role = doc.getString("role")
+                    val effectiveRole =
+                        if (PulseRoles.isAdminEmail(email)) PulseRoles.ROLE_ADMIN else role
+                    applyRole(effectiveRole)
                 }
                 .addOnFailureListener { onFail() }
         }

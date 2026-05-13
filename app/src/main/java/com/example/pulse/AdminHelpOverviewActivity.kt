@@ -15,7 +15,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class PatientHelpListActivity : AppCompatActivity() {
+/** Admin-only list of all HELP requests (read-only case view on tap). */
+class AdminHelpOverviewActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -24,27 +25,30 @@ class PatientHelpListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_patient_help_list)
+        setContentView(R.layout.activity_responder_help_queue)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.patientHelpListRoot)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.responderQueueRoot)) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
             insets
         }
 
-        findViewById<MaterialToolbar>(R.id.toolbarHelpList).setNavigationOnClickListener { finish() }
+        findViewById<MaterialToolbar>(R.id.toolbarQueue).apply {
+            setNavigationOnClickListener { finish() }
+            title = getString(R.string.admin_help_overview_title)
+        }
 
-        val rv = findViewById<RecyclerView>(R.id.rvHelpRequests)
-        val progress = findViewById<ProgressBar>(R.id.progressHelpList)
+        val rv = findViewById<RecyclerView>(R.id.rvQueue)
+        val progress = findViewById<ProgressBar>(R.id.progressQueue)
 
-        adapter = HelpRequestAdapter(HelpRequestRowStyle.PATIENT) { item ->
+        adapter = HelpRequestAdapter(HelpRequestRowStyle.ADMIN) { item ->
             startActivity(
                 Intent(this, CaseTrackerActivity::class.java)
                     .putExtra(CaseTrackerActivity.EXTRA_HELP_REQUEST_ID, item.id)
-                    .putExtra(CaseTrackerActivity.EXTRA_VIEWER, CaseTrackerActivity.VIEWER_PATIENT)
+                    .putExtra(CaseTrackerActivity.EXTRA_VIEWER, CaseTrackerActivity.VIEWER_RESPONDER)
             )
         }
         rv.layoutManager = LinearLayoutManager(this)
@@ -53,43 +57,29 @@ class PatientHelpListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val progress = findViewById<ProgressBar>(R.id.progressHelpList)
+        val progress = findViewById<ProgressBar>(R.id.progressQueue)
         progress.visibility = View.VISIBLE
-        loadAndMarkSeen(progress)
+        loadAll(progress)
     }
 
-    private fun loadAndMarkSeen(progress: ProgressBar) {
-        val uid = auth.currentUser?.uid
-        if (uid == null) {
+    private fun loadAll(progress: ProgressBar) {
+        if (auth.currentUser == null) {
             progress.visibility = View.GONE
-            Toast.makeText(this, R.string.responder_assign_need_login, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.responder_profile_need_login, Toast.LENGTH_LONG).show()
             finish()
             return
         }
         db.collection("helpRequests")
-            .whereEqualTo("patientUid", uid)
             .get()
             .addOnSuccessListener { snap ->
                 val list = snap.documents.mapNotNull { HelpRequest.from(it) }
                     .sortedByDescending { it.createdAtMillis }
                 adapter.submitList(list)
-                markDoneSeen(uid, list)
                 progress.visibility = View.GONE
             }
             .addOnFailureListener { e ->
                 progress.visibility = View.GONE
                 Toast.makeText(this, getString(R.string.help_list_load_error, e.message ?: ""), Toast.LENGTH_LONG).show()
             }
-    }
-
-    private fun markDoneSeen(patientUid: String, list: List<HelpRequest>) {
-        val unseen = list.filter { it.status == HelpRequestStatus.DONE && !it.patientSeenCompletion }
-        if (unseen.isEmpty()) return
-        val batch = db.batch()
-        unseen.forEach { req ->
-            val ref = db.collection("helpRequests").document(req.id)
-            batch.update(ref, mapOf("patientSeenCompletion" to true))
-        }
-        batch.commit().addOnFailureListener { /* non-fatal */ }
     }
 }

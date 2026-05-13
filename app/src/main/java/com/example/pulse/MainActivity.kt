@@ -32,11 +32,15 @@ class MainActivity : AppCompatActivity() {
 
         val db = FirebaseFirestore.getInstance()
         val uid = user.uid
+        val email = user.email
 
         fun openDashboard(role: String?) {
-            val dest = when (role) {
-                "Respondent", "Responder" -> ResponderDashboardActivity::class.java
-                "Patient" -> PatientDashboardActivity::class.java
+            val effectiveRole =
+                if (PulseRoles.isAdminEmail(email)) PulseRoles.ROLE_ADMIN else role
+            val dest = when (effectiveRole) {
+                PulseRoles.ROLE_ADMIN -> AdminDashboardActivity::class.java
+                PulseRoles.ROLE_RESPONDENT, PulseRoles.ROLE_RESPONDER -> ResponderDashboardActivity::class.java
+                PulseRoles.ROLE_PATIENT -> PatientDashboardActivity::class.java
                 else -> null
             }
             if (dest == null) {
@@ -56,6 +60,15 @@ class MainActivity : AppCompatActivity() {
             db.collection("users").document(uid).get(source)
                 .addOnSuccessListener { doc ->
                     if (!doc.exists()) {
+                        if (PulseRoles.isAdminEmail(email)) {
+                            startActivity(
+                                Intent(this, AdminDashboardActivity::class.java).addFlags(
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                )
+                            )
+                            finish()
+                            return@addOnSuccessListener
+                        }
                         onMissing()
                         return@addOnSuccessListener
                     }
