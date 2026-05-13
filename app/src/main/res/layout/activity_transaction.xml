@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/transactionRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pulse_surface"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".TransactionActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,9 +41,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp"
         android:text="@string/transaction_screen_description"
         android:textColor="@color/pulse_on_surface"
         android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTransactionList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="24dp"
+        tools:listitem="@layout/item_transaction" />
 
 </LinearLayout>

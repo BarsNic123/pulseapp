@@ -112,21 +112,12 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/transparency_history_label"
-            android:textColor="@color/pulse_on_surface"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTransactions"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:clipToPadding="false"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:paddingBottom="24dp"
-            tools:listitem="@layout/item_transaction" />
+            android:text="@string/transparency_hint_open_detail"
+            android:textColor="@color/pulse_on_surface_variant"
+            android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>

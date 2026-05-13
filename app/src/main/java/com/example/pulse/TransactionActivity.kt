@@ -5,6 +5,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 
 class TransactionActivity : AppCompatActivity() {
@@ -20,5 +22,9 @@ class TransactionActivity : AppCompatActivity() {
         }
 
         findViewById<MaterialButton>(R.id.btnBackTransaction).setOnClickListener { finish() }
+
+        val rv = findViewById<RecyclerView>(R.id.rvTransactionList)
+        rv.layoutManager = LinearLayoutManager(this)
+        rv.adapter = TransactionAdapter(FinanceSampleData.transactions)
     }
 }
