@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.Pulse" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/pulse_accent</item>
+        <item name="colorSurface">#121212</item>
+        <item name="colorOnSurface">#E8E8E8</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">#121212</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+</resources>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pulse_surface"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            style="@style/Pulse.IconButton.Back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/cd_back"
+            app:icon="@drawable/ic_nav_back_surface"
+            app:iconTint="@color/pulse_primary" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/responder_profile_title"
+            android:textColor="@color/pulse_on_surface"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvResponderBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_role_badge"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:text="@string/role_badge_responder"
+        android:textColor="@color/pulse_primary"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/pulse_surface_card"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:strokeColor="@color/pulse_outline"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                style="@style/FieldLabel"
+                android:text="@string/profile_label_name" />
+
+            <TextView
+                android:id="@+id/tvResponderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:textColor="@color/pulse_on_surface"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:text="@string/responder_profile_email" />
+
+            <TextView
+                android:id="@+id/tvResponderEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:textColor="@color/pulse_on_surface"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:text="@string/responder_profile_expertise" />
+
+            <TextView
+                android:id="@+id/tvResponderExpertise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:textColor="@color/pulse_on_surface"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:text="@string/responder_profile_affiliation" />
+
+            <TextView
+                android:id="@+id/tvResponderAffiliation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:textColor="@color/pulse_on_surface"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:text="@string/responder_profile_license" />
+
+            <TextView
+                android:id="@+id/tvResponderLicense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pulse_on_surface"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEditResponderProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="12dp"
+        android:text="@string/responder_profile_edit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/pulse_primary"
+        app:cornerRadius="12dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogoutResponder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingVertical="12dp"
+        android:text="@string/profile_logout"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/pulse_error"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>

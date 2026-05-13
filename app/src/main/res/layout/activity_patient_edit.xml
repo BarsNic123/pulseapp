@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/patientEditRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pulse_surface"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarPatientEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pulse_surface_card"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/patient_edit_title"
+        app:titleTextColor="@color/pulse_on_surface" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvEditDisclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/pulse_on_surface_variant"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:layout_marginBottom="4dp"
+                android:text="@string/profile_label_name" />
+
+            <EditText
+                android:id="@+id/etFullName"
+                style="@style/PulseInput"
+                android:hint="@string/patient_edit_hint_name"
+                android:inputType="textPersonName|textCapWords" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:layout_marginBottom="4dp"
+                android:text="@string/profile_label_age" />
+
+            <EditText
+                android:id="@+id/etAge"
+                style="@style/PulseInput"
+                android:hint="@string/patient_edit_hint_age"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:layout_marginBottom="4dp"
+                android:text="@string/profile_label_blood" />
+
+            <Spinner
+                android:id="@+id/spnBloodType"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:layout_marginBottom="4dp"
+                android:text="@string/profile_label_emergency" />
+
+            <EditText
+                android:id="@+id/etEmergency"
+                style="@style/PulseInput"
+                android:hint="@string/patient_edit_hint_emergency"
+                android:inputType="phone" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:layout_marginBottom="4dp"
+                android:text="@string/case_section_notes" />
+
+            <EditText
+                android:id="@+id/etMedicalNotes"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="16dp"
+                android:background="@android:drawable/editbox_background"
+                android:gravity="top|start"
+                android:hint="@string/patient_edit_hint_notes"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:textColor="@color/pulse_on_surface" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/patient_edit_risk_label"
+                android:textColor="@color/pulse_on_surface"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/rgRiskLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbLowRisk"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/patient_edit_risk_low" />
+
+                <RadioButton
+                    android:id="@+id/rbHighRisk"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/patient_edit_risk_high" />
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSavePatient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:paddingVertical="14dp"
+        android:text="@string/patient_edit_save"
+        android:textAllCaps="false"
+        app:cornerRadius="12dp" />
+</LinearLayout>

@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function userPath(uid) {
+      return /databases/$(database)/documents/users/$(uid);
+    }
+
+    function isPatientDoc(data) {
+      return data != null && data.get("role", "") == "Patient";
+    }
+
+    // Responder may update a patient profile only if that patient lists them as assigned.
+    function responderMayEditPatient(patientUid) {
+      return signedIn()
+        && patientUid != request.auth.uid
+        && exists(userPath(patientUid))
+        && get(userPath(patientUid)).data.get("assignedResponderUid", "") == request.auth.uid
+        && isPatientDoc(get(userPath(patientUid)).data);
+    }
+
+    match /users/{userId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.auth.uid == userId;
+      allow update: if signedIn() && (
+        request.auth.uid == userId ||
+        responderMayEditPatient(userId)
+      );
+      allow delete: if false;
+    }
+
+    match /helpRequests/{requestId} {
+      allow read: if signedIn() && (
+        resource.data.patientUid == request.auth.uid ||
+        resource.data.responderUid == request.auth.uid
+      );
+      allow create: if signedIn()
+        && request.resource.data.patientUid == request.auth.uid
+        && request.resource.data.responderUid is string
+        && request.resource.data.status == "pending";
+      allow update: if signedIn() && (
+        resource.data.patientUid == request.auth.uid ||
+        resource.data.responderUid == request.auth.uid
+      );
+      allow delete: if false;
+    }
+
+    match /voice_notes/{noteId} {
+      allow read: if signedIn() && (
+        resource.data.patientUid == request.auth.uid ||
+        resource.data.responderUid == request.auth.uid
+      );
+      allow create: if signedIn()
+        && request.resource.data.patientUid == request.auth.uid
+        && request.resource.data.responderUid is string
+        && request.resource.data.downloadUrl is string;
+      allow update, delete: if false;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Professional Pulse mark: rounded container + ECG rhythm -->
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M100,16C54,16 16,54 16,100s38,84 84,84 84,-38 84,-84S146,16 100,16z" />
+    <path
+        android:fillColor="#0B5A7A"
+        android:pathData="M100,28c-39.8,0 -72,32.2 -72,72s32.2,72 72,72 72,-32.2 72,-72S139.8,28 100,28z" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M48,102 L68,102 L76,72 L86,132 L98,58 L110,132 L120,88 L132,102 L152,102"
+        android:strokeWidth="7"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#4FC3F7"
+        android:pathData="M100,154m-10,0a10,10 0,1 1,20 0a10,10 0,1 1,-20 0" />
+</vector>

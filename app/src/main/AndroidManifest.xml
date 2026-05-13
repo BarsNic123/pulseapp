@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+    <!-- Fine + coarse location: SOS / ride flows; coarse alone satisfies background location policy where applicable -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Declared for future SMS alerts; keep to avoid manifest drift from cloud / safety features -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+    <application
+        android:name=".PulseApplication"
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Pulse"
+        tools:targetApi="31">
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".RegisterActivity" android:exported="false" />
+        <activity android:name=".RespondentRegActivity" android:exported="false" />
+        <activity android:name=".PatientRegActivity" android:exported="false" />
+        <activity android:name=".PatientDashboardActivity" android:exported="false" />
+        <activity android:name=".ResponderDashboardActivity" android:exported="false" />
+        <activity android:name=".AdminDashboardActivity" android:exported="false" />
+        <activity android:name=".ResponderEditActivity" android:exported="false" />
+        <activity android:name=".ResponderListActivity" android:exported="false" />
+        <activity android:name=".PatientListActivity" android:exported="false" android:label="@string/patient_directory_title" />
+        <activity android:name=".CaseTrackerActivity" android:exported="false" />
+        <activity android:name=".PatientHelpListActivity" android:exported="false" android:label="@string/help_list_title" />
+        <activity android:name=".ResponderHelpQueueActivity" android:exported="false" />
+        <activity android:name=".PatientEditActivity" android:exported="false" android:label="@string/patient_edit_title" />
+        <activity android:name=".VoiceNotesHistoryActivity" android:exported="false" />
+        <activity android:name=".PlaceholderActivity" android:exported="false" />
+        <activity android:name=".VoiceRecorderActivity" android:exported="false" />
+        <activity android:name=".MedicineListActivity" android:exported="false" />
+        <activity android:name=".PatientProfileActivity" android:exported="false" android:label="My Profile" />
+        <activity android:name=".ResponderProfileActivity" android:exported="false" android:label="Responder Profile" />
+        <activity android:name=".TransparencyDashboardActivity" android:exported="false" android:label="Transparency Dashboard" />
+        <activity android:name=".TransactionActivity" android:exported="false" android:label="Transactions" />
+        <activity android:name=".RevenueActivity" android:exported="false" android:label="Revenue" />
+    </application>
+</manifest>

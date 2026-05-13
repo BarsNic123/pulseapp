@@ -1,0 +1,59 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.Pulse" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/pulse_primary</item>
+        <item name="colorPrimaryContainer">@color/pulse_gradient_start</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/pulse_surface</item>
+        <item name="colorOnSurface">@color/pulse_on_surface</item>
+        <item name="android:statusBarColor">@color/pulse_primary_dark</item>
+        <item name="android:navigationBarColor">@color/pulse_surface</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+
+    <style name="Theme.Pulse" parent="Base.Theme.Pulse" />
+
+    <style name="FieldLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/pulse_on_surface_variant</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="PulseInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@android:drawable/editbox_background</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:textColor">@color/pulse_on_surface</item>
+    </style>
+
+    <style name="PulseChip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/pulse_outline</item>
+        <item name="android:textColor">@color/pulse_on_surface</item>
+        <item name="chipCornerRadius">8dp</item>
+        <item name="chipStrokeWidth">0dp</item>
+    </style>
+
+    <!-- Material icon-only back control for light surfaces -->
+    <style name="Pulse.IconButton.Back" parent="Widget.Material3.Button.IconButton">
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">@color/pulse_gradient_start</item>
+    </style>
+
+    <!-- Back control on primary / dark header -->
+    <style name="Pulse.IconButton.Back.OnPrimary" parent="Widget.Material3.Button.IconButton">
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">#33FFFFFF</item>
+    </style>
+</resources>

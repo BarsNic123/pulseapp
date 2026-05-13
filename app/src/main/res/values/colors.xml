@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF121212</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="pulse_primary">#0B5A7A</color>
+    <color name="pulse_primary_dark">#073D54</color>
+    <color name="pulse_accent">#1A8BC7</color>
+    <color name="pulse_surface">#F5F8FA</color>
+    <color name="pulse_surface_card">#FFFFFFFF</color>
+    <color name="pulse_on_surface">#1C1B1F</color>
+    <color name="pulse_on_surface_variant">#5C5F62</color>
+    <color name="pulse_error">#C62828</color>
+    <color name="pulse_success">#2E7D57</color>
+    <color name="pulse_outline">#E0E3E7</color>
+    <color name="pulse_gradient_start">#E8F4FC</color>
+    <color name="pulse_gradient_end">#FFFFFF</color>
+</resources>
