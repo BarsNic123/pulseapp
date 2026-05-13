@@ -58,7 +58,6 @@
     <string name="transparency_navigate_up">Navigate up</string>
     <string name="transparency_open_transactions">Transactions</string>
     <string name="transparency_open_revenue">Revenue</string>
-    <string name="transparency_hint_open_detail">Open Transactions for the full ledger, or Revenue for income-only totals.</string>
     <string name="revenue_total_label">Total revenue (income)</string>
     <string name="revenue_income_list_label">Income entries</string>
     <string name="transaction_screen_title">Transactions</string>
