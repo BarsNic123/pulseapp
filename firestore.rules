@@ -72,5 +72,11 @@ service cloud.firestore {
         && request.resource.data.downloadUrl is string;
       allow update, delete: if false;
     }
+
+    // Transparency ledger (read all signed-in users; write admins only)
+    match /finance_transactions/{txId} {
+      allow read: if signedIn();
+      allow create, update, delete: if isAdmin();
+    }
   }
 }

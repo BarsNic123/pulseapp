@@ -42,6 +42,7 @@
         <activity android:name=".PatientRegActivity" android:exported="false" />
         <activity android:name=".PatientDashboardActivity" android:exported="false" />
         <activity android:name=".ResponderDashboardActivity" android:exported="false" />
+        <activity android:name=".AdminDashboardActivity" android:exported="false" android:label="@string/admin_dashboard_title" />
         <activity android:name=".AdminHelpOverviewActivity" android:exported="false" android:label="@string/admin_help_overview_title" />
         <activity android:name=".ResponderEditActivity" android:exported="false" />
         <activity android:name=".ResponderListActivity" android:exported="false" />

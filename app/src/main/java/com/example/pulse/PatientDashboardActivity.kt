@@ -93,6 +93,16 @@ class PatientDashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, MedicineListActivity::class.java))
         }
 
+        findViewById<MaterialCardView>(R.id.cvPatientTransactions).setOnClickListener {
+            startActivity(Intent(this, TransactionActivity::class.java))
+        }
+        findViewById<MaterialCardView>(R.id.cvPatientRevenue).setOnClickListener {
+            startActivity(Intent(this, RevenueActivity::class.java))
+        }
+        findViewById<MaterialCardView>(R.id.cvPatientTransparencyOverview).setOnClickListener {
+            startActivity(Intent(this, TransparencyDashboardActivity::class.java))
+        }
+
         btnSos?.setOnClickListener {
             triggerSosAlert()
         }

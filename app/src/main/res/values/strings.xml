@@ -74,6 +74,15 @@
     <string name="role_badge_patient">Patient portal</string>
     <string name="role_badge_responder">Responder portal</string>
     <string name="role_badge_admin">Administrator</string>
+    <string name="admin_dashboard_title">Admin</string>
+    <string name="patient_transparency_section">Funds &amp; transparency</string>
+    <string name="patient_transparency_sub">View community ledger from Firebase</string>
+    <string name="patient_transparency_overview">Full overview</string>
+    <string name="patient_transparency_overview_sub">Net balance, history, revenue</string>
+    <string name="patient_open_transactions">Transactions</string>
+    <string name="patient_open_transactions_sub">All income &amp; expenses</string>
+    <string name="patient_open_revenue">Revenue</string>
+    <string name="patient_open_revenue_sub">Income totals</string>
     <string name="admin_overview_strip_loading">Loading organization summary…</string>
     <string name="admin_overview_strip_format">%1$d patients · %2$d responders · %3$d HELP requests</string>
     <string name="admin_overview_strip_error">Could not load live counts. Pull to refresh from Firebase console if rules block access.</string>

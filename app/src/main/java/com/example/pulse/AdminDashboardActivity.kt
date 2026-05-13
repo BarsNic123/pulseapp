@@ -74,6 +74,7 @@ class AdminDashboardActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        FinanceFirestore.seedDefaultsIfEmpty(db, auth) { }
         loadLiveCounts()
     }
 
